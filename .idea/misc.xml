@@ -3,9 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Apps/SeekBarPreference/library/src/main/res/layout/seekbar.xml" value="0.19021739130434784" />
         <entry key="..\:/Apps/SeekBarPreference/library/src/main/res/layout/seekbar_guts.xml" value="0.1635658914728682" />
         <entry key="..\:/Apps/SeekBarPreference/library/src/main/res/layout/seekbar_guts_new.xml" value="0.10989583333333333" />
         <entry key="..\:/Apps/SeekBarPreference/library/src/main/res/layout/seekbar_new.xml" value="0.10989583333333333" />
+        <entry key="..\:/Apps/SeekBarPreference/library/src/main/res/layout/seekbar_preference_layout.xml" value="0.19021739130434784" />
         <entry key="..\:/Apps/SeekBarPreference/library/src/main/res/layout/seekbar_preference_layout_new.xml" value="0.536" />
         <entry key="library/src/main/res/layout/seekbar.xml" value="0.2046875" />
         <entry key="library/src/main/res/layout/seekbar_guts.xml" value="0.2046875" />

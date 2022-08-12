@@ -106,8 +106,6 @@ open class SeekBarViewNew : ConstraintLayout, View.OnClickListener, Slider.OnCha
 //        binding.seekbar.setPrimaryColor(color)
 //        binding.seekbar.setSecondaryColor(ColorUtils.setAlphaComponent(color, 0x33))
 
-        binding.up.setOnClickListener(this)
-        binding.down.setOnClickListener(this)
         binding.reset.setOnClickListener(this)
         binding.valueHolder.setOnClickListener(this)
     }
@@ -122,22 +120,6 @@ open class SeekBarViewNew : ConstraintLayout, View.OnClickListener, Slider.OnCha
                     listener?.onProgressChanged(value)
                     setValue(value)
                 }.show()
-            }
-            R.id.up -> {
-                val newValue = progress + stepSize
-                if (newValue <= maxValue) {
-                    listener?.onProgressAdded()
-                    listener?.onProgressChanged(newValue)
-                    setValue(newValue)
-                }
-            }
-            R.id.down -> {
-                val newValue = progress - stepSize
-                if (newValue >= minValue) {
-                    listener?.onProgressSubtracted()
-                    listener?.onProgressChanged(newValue)
-                    setValue(newValue)
-                }
             }
             R.id.reset -> {
                 listener?.onProgressReset()
@@ -167,8 +149,6 @@ open class SeekBarViewNew : ConstraintLayout, View.OnClickListener, Slider.OnCha
         binding.measurementUnit.isEnabled = enabled
         binding.bottomLine.isEnabled = enabled
         binding.buttonHolder.isEnabled = enabled
-        binding.up.isEnabled = enabled
-        binding.down.isEnabled = false
         binding.reset.isEnabled = false
     }
 

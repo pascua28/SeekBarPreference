@@ -91,32 +91,6 @@
         android:layout_width="50dp"
         android:layout_height="0dp"
         android:orientation="vertical">
-
-        <ImageView
-            android:id="@+id/up"
-            app:srcCompat="@drawable/ic_keyboard_arrow_up_black_24dp"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="?selectableItemBackgroundBorderless"
-            android:clickable="true"
-            android:focusable="true"
-            android:scaleType="center"
-            android:tint="?android:textColorPrimary" />
-
-        <ImageView
-            android:id="@+id/down"
-            app:srcCompat="@drawable/ic_keyboard_arrow_down_black_24dp"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="?selectableItemBackgroundBorderless"
-            android:clickable="true"
-            android:focusable="true"
-            android:scaleType="center"
-            android:tint="?android:textColorPrimary" />
-
-
     </LinearLayout>
 
 </merge>
