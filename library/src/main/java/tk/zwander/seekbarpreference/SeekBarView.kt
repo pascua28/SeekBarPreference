@@ -182,8 +182,8 @@ open class SeekBarView : ConstraintLayout, View.OnClickListener, Slider.OnPositi
         binding.measurementUnit.isEnabled = enabled
         binding.bottomLine.isEnabled = enabled
         binding.buttonHolder.isEnabled = enabled
-        binding.up.isEnabled = enabled
-        binding.down.isEnabled = enabled
+        binding.up.isEnabled = false
+        binding.down.isEnabled = false
         binding.reset.isEnabled = enabled
     }
 

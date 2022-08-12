@@ -168,8 +168,8 @@ open class SeekBarViewNew : ConstraintLayout, View.OnClickListener, Slider.OnCha
         binding.bottomLine.isEnabled = enabled
         binding.buttonHolder.isEnabled = enabled
         binding.up.isEnabled = enabled
-        binding.down.isEnabled = enabled
-        binding.reset.isEnabled = enabled
+        binding.down.isEnabled = false
+        binding.reset.isEnabled = false
     }
 
     fun onBind(minValue: Float,
