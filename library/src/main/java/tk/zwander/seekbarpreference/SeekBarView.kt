@@ -48,7 +48,7 @@ open class SeekBarView : ConstraintLayout, View.OnClickListener, Slider.OnPositi
     var scaledProgress: Float
         get() = progress * scale
         set(value) {
-            setValue(value / scale, true)
+            setValue((value / scale).toInt(), true)
         }
 
     var dialogEnabled = true
@@ -122,17 +122,17 @@ open class SeekBarView : ConstraintLayout, View.OnClickListener, Slider.OnPositi
     override fun onClick(v: View) {
         when(v.id) {
             R.id.value_holder -> CustomInputDialog(
-                context, minValue.toFloat(),
-                maxValue.toFloat(), progress.toFloat(), scale
+                context, minValue,
+                maxValue, progress, scale
             ) { value ->
-                listener?.onProgressChanged(value.toInt(), value * scale)
+                listener?.onProgressChanged(value, (value * scale).toInt())
                 setValue(value, true)
             }
                 .show()
             R.id.reset -> {
                 listener?.onProgressReset()
-                listener?.onProgressChanged(defaultValue, defaultValue * scale)
-                setValue(defaultValue.toFloat(), true)
+                listener?.onProgressChanged(defaultValue, (defaultValue * scale).toInt())
+                setValue(defaultValue, true)
             }
         }
     }
@@ -140,14 +140,14 @@ open class SeekBarView : ConstraintLayout, View.OnClickListener, Slider.OnPositi
     override fun onPositionChanged(
         view: Slider?,
         fromUser: Boolean,
-        oldPos: Float,
-        newPos: Float,
+        oldPos: Int,
+        newPos: Int,
         oldValue: Int,
         newValue: Int
     ) {
         this.progress = newValue
-        listener?.onProgressChanged(newValue, newValue * scale)
-        binding.seekbarValue.text = formatProgress(newValue * scale)
+        listener?.onProgressChanged(newValue, (newValue * scale).toInt())
+        binding.seekbarValue.text = formatProgress((newValue * scale).toInt())
 
         updateFill(newValue)
     }
@@ -187,18 +187,18 @@ open class SeekBarView : ConstraintLayout, View.OnClickListener, Slider.OnPositi
         this.sharedPreferences = prefs
 
         binding.seekbar.setValueRange(minValue, maxValue, false)
-        setValue(progress.toFloat(), false)
+        setValue(progress, false)
         binding.seekbar.setOnPositionChangeListener(this)
     }
 
-    fun setValue(value: Float, animate: Boolean) {
+    fun setValue(value: Int, animate: Boolean) {
         binding.seekbar.setOnPositionChangeListener(null)
-        binding.seekbar.setValue(value.coerceIn(minValue.toFloat(), maxValue.toFloat()), animate)
+        binding.seekbar.setValue(value.coerceIn(minValue, maxValue), animate)
         binding.seekbar.setOnPositionChangeListener(this)
 
-        progress = value.coerceIn(minValue.toFloat(), maxValue.toFloat()).toInt()
+        progress = value.coerceIn(minValue, maxValue)
 
-        binding.seekbarValue.text = formatProgress(value * scale)
+        binding.seekbarValue.text = formatProgress((value * scale).toInt())
 
         updateFill(value.toInt())
     }
@@ -220,7 +220,7 @@ open class SeekBarView : ConstraintLayout, View.OnClickListener, Slider.OnPositi
         }
     }
 
-    private fun formatProgress(progress: Float): String {
+    private fun formatProgress(progress: Int): String {
         return DecimalFormat("0.##").format(progress.toDouble()) + (if (units != null) " $units" else "")
     }
 
@@ -233,7 +233,7 @@ open class SeekBarView : ConstraintLayout, View.OnClickListener, Slider.OnPositi
     }
 
     interface SeekBarListener {
-        fun onProgressChanged(newValue: Int, newScaledValue: Float)
+        fun onProgressChanged(newValue: Int, newScaledValue: Int)
         fun onProgressReset()
         fun onProgressAdded()
         fun onProgressSubtracted()

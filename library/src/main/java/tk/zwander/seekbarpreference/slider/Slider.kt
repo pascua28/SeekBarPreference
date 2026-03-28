@@ -433,7 +433,7 @@ class Slider : View {
      * @param value The selected value.
      * @param animation Indicate that should show animation when change thumb's position.
      */
-    fun setValue(value: Float, animation: Boolean) {
+    fun setValue(value: Int, animation: Boolean) {
         val newValue = maxValue.toFloat().coerceAtMost(value.coerceAtLeast(minValue.toFloat()))
         setPosition((newValue - minValue) / (maxValue - minValue), animation)
     }

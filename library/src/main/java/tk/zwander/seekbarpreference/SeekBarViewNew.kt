@@ -113,7 +113,7 @@ open class SeekBarViewNew : ConstraintLayout, View.OnClickListener, Slider.OnCha
     override fun onClick(v: View) {
         when(v.id) {
             R.id.value_holder -> {
-                CustomInputDialog(
+                CustomInputDialogNew(
                     context, minValue,
                     maxValue, progress, 1f
                 ) { value ->

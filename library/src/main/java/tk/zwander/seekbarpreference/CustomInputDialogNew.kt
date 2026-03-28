@@ -9,17 +9,17 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import tk.zwander.seekbarpreference.databinding.ValueSelectorDialogBinding
 import java.text.DecimalFormat
 
-open class CustomInputDialog(
+open class CustomInputDialogNew(
     private val context: Context,
-    minValue: Int,
-    maxValue: Int,
-    unscaledCurrent: Int,
+    minValue: Float,
+    maxValue: Float,
+    unscaledCurrent: Float,
     private val scale: Float,
-    private val listener: ((progress: Int) -> Unit)? = null
+    private val listener: ((progress: Float) -> Unit)? = null
 ) {
-    private val minValue = (minValue * scale).toInt()
-    private val maxValue = (maxValue * scale).toInt()
-    private val currentValue = (unscaledCurrent * scale).toInt()
+    private val minValue = minValue * scale
+    private val maxValue = maxValue * scale
+    private val currentValue = unscaledCurrent * scale
 
     private val dialogBinding = ValueSelectorDialogBinding.inflate(LayoutInflater.from(context))
 
@@ -62,10 +62,10 @@ open class CustomInputDialog(
     }
 
     private fun tryApply() {
-        val value: Int
+        val value: Float
 
         try {
-            value = dialogBinding.customValue.text.toString().toInt()
+            value = dialogBinding.customValue.text.toString().toFloat()
 
             if (value > maxValue) {
                 notifyWrongInput()
@@ -79,7 +79,7 @@ open class CustomInputDialog(
             return
         }
 
-        listener?.invoke((value / scale).toInt())
+        listener?.invoke(value / scale)
         dialog.dismiss()
     }
 
